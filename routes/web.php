@@ -16,11 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/studenti',function (){
-    $studenti = new \App\Models\Studenti(1,"Albenit Fisteku","20/06/2001","M ");
-
-    return view('studenti',[
-        "studenti" =>$studenti
-    ]);
-
-});
+Route::get('/studenti','App\Http\Controllers\StudentiController@studenti');
