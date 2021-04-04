@@ -17,3 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/studenti','App\Http\Controllers\StudentiController@studenti');
+
+Route::get('addmember', function (){
+    return view('addGymMember');
+});
+
