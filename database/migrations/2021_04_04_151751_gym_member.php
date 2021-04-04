@@ -20,6 +20,7 @@ class GymMember extends Migration
             $table->date('birthdate');
             $table->date('expire_date');
             $table->string('profile_picture')->nullable();
+            $table->timestamps();
         });
     }
 
