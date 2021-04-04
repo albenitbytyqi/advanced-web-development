@@ -4,7 +4,8 @@
 </head>
     <body>
     <center>
-        <form method="POST" action="{{route()}}">
+        <form method="POST" action="{{route('add_member_gym')}}" enctype="multipart/form-data">
+            @csrf
             <label>First Name</label><br>
             <input type="text" name="first_name"><br>
             <label>Last Name</label><br>
