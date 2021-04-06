@@ -17,6 +17,13 @@
                 @slot('lastName', $member->getLastName())
                 @slot('birthdate', $member->getBirthdate())
                 @slot('expireDate', $member->getExpireDate())
+                @slot('edit')
+                    <form method="POST" action="{{route('editMember',$member->getId())}}">
+                        @method('POST')
+                        @csrf
+                        <button class="btn btn-danger">Edit</button>
+                    </form>
+                @endslot
                 @slot('delete')
                     <form onsubmit="return confirm('Are your sure to delete {{$member->getFirstName()}}');"
                           method="POST" action="{{route('deleteMember',$member->getId())}}">
