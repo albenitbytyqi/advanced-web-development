@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\add_member_model;
 use Illuminate\Http\Request;
 
-class add_member_controller extends Controller
-{
+class add_member_controller extends Controller{
+
     public function addGymMember(Request $request){
         $member = new add_member_model();
         $member->first_name = $request->first_name;
@@ -15,5 +15,13 @@ class add_member_controller extends Controller
         $member->expire_date = $request->expire_date;
         $member->profile_picture = $request->profile_picture;
         $member->save();
+        return redirect()->route('viewGymMember');
+    }
+
+    public function deleteMember($id){
+        $member = add_member_model::find($id);
+        $member->delete();
+
+        return redirect()->route('viewGymMember');
     }
 }
