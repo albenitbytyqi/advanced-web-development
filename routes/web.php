@@ -18,11 +18,18 @@ Route::get('/', function () {
 });
 Route::get('/studenti','App\Http\Controllers\StudentiController@studenti');
 
-Route::get('addmember', function (){
+Route::get('/addmember', function (){
     return view('addGymMember');
-});
+})->name('addmember');
 Route::post('add.gym.member','App\Http\Controllers\add_member_controller@addGymMember')->name('add_member_gym');
 
+Route::get('/view.gym.member',function (){
+   return view('viewGymMember');
+})->name('viewGymMember');
+
+Route::get('/member','App\Http\Controllers\add_member_controller@member');
+
+Route::delete('/delete.member/{id}','App\Http\Controllers\add_member_controller@deleteMember')->name('deleteMember');
 
 
 
