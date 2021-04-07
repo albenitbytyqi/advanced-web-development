@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/studenti','App\Http\Controllers\StudentiController@studenti');
 
 Route::get('/addmember', function (){
     return view('addGymMember');
@@ -29,8 +28,15 @@ Route::get('/view.gym.member',function (){
 
 Route::get('/member','App\Http\Controllers\add_member_controller@member');
 
-Route::delete('/delete.member/{id}','App\Http\Controllers\add_member_controller@deleteMember')->name('deleteMember');
+Route::post('get.member/{id}','App\Http\Controllers\add_member_controller@getMember')->name('getMember');
 
+Route::post('/edit.member', function (){
+    return view('editMember');
+})->name('editMember');
+
+Route::post('/edit.gym.member','App\Http\Controllers\add_member_controller@updateMember')->name('editGymMember');
+
+Route::delete('/delete.member/{id}','App\Http\Controllers\add_member_controller@deleteMember')->name('deleteMember');
 
 
 
