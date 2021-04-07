@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class add_member_controller extends Controller{
 
+
+
     public function addGymMember(Request $request){
         $member = new add_member_model();
         $member->first_name = $request->first_name;
@@ -22,6 +24,23 @@ class add_member_controller extends Controller{
         $member = add_member_model::find($id);
         $member->delete();
 
+        return redirect()->route('viewGymMember');
+    }
+
+    public function getMember($id){
+        $gymMember = add_member_model::find($id);
+        return view('editMember',['gymMember' => $gymMember]);
+    }
+
+    public function updateMember(Request $request){
+        $gymMember = add_member_model::find($request->id);
+
+        $gymMember->first_name = $request->first_name;
+        $gymMember->last_name = $request->last_name;
+        $gymMember->birthdate = $request->birthdate;
+        $gymMember->expire_date = $request->expire_date;
+        $gymMember->profile_picture = $request->profile_picture;
+        $gymMember->save();
         return redirect()->route('viewGymMember');
     }
 }
