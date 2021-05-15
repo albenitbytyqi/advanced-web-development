@@ -17,13 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
 Route::get('/addmember', function (){
     return view('addGymMember');
 })->name('addmember');
 Route::post('add.gym.member','App\Http\Controllers\add_member_controller@addGymMember')->name('add_member_gym');
 
 Route::get('/view.gym.member',function (){
-   return view('viewGymMember');
+    return view('viewGymMember');
 })->name('viewGymMember');
 
 Route::get('/member','App\Http\Controllers\add_member_controller@member');
@@ -37,20 +42,3 @@ Route::post('/edit.member', function (){
 Route::post('/edit.gym.member','App\Http\Controllers\add_member_controller@updateMember')->name('editGymMember');
 
 Route::delete('/delete.member/{id}','App\Http\Controllers\add_member_controller@deleteMember')->name('deleteMember');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
