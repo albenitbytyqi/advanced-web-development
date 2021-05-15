@@ -22,23 +22,25 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
 Route::get('/addmember', function (){
     return view('addGymMember');
-})->name('addmember');
+})->middleware(['auth'])->name('addmember');
 Route::post('add.gym.member','App\Http\Controllers\add_member_controller@addGymMember')->name('add_member_gym');
 
 Route::get('/view.gym.member',function (){
     return view('viewGymMember');
-})->name('viewGymMember');
+})->middleware(['auth'])->name('viewGymMember');
 
-Route::get('/member','App\Http\Controllers\add_member_controller@member');
+Route::get('/member','App\Http\Controllers\add_member_controller@member')->middleware(['auth']);
 
-Route::post('get.member/{id}','App\Http\Controllers\add_member_controller@getMember')->name('getMember');
+Route::post('get.member/{id}','App\Http\Controllers\add_member_controller@getMember')->middleware(['auth'])->name('getMember');
 
 Route::post('/edit.member', function (){
     return view('editMember');
-})->name('editMember');
+})->middleware(['auth'])->name('editMember');
 
-Route::post('/edit.gym.member','App\Http\Controllers\add_member_controller@updateMember')->name('editGymMember');
+Route::post('/edit.gym.member','App\Http\Controllers\add_member_controller@updateMember')->middleware(['auth'])->name('editGymMember');
 
-Route::delete('/delete.member/{id}','App\Http\Controllers\add_member_controller@deleteMember')->name('deleteMember');
+Route::delete('/delete.member/{id}','App\Http\Controllers\add_member_controller@deleteMember')->middleware(['auth'])->name('deleteMember');
