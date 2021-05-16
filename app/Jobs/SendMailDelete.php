@@ -2,8 +2,6 @@
 
 namespace App\Jobs;
 
-use Carbon\Carbon;
-use http\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class SendMail implements ShouldQueue
+class SendMailDelete implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     private $to;
@@ -36,9 +34,7 @@ class SendMail implements ShouldQueue
     public function handle()
     {
         Mail::send([],[], function ($message){
-            $message->to($this->to)->setBody("Welcome");
+            $message->to($this->to)->setBody("Item was deleted -> ");
         });
     }
-
 }
-

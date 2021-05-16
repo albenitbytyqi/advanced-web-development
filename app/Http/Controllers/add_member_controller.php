@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMail;
+use App\Jobs\SendMailDelete;
 use App\Models\add_member_model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class add_member_controller extends Controller{
 
@@ -24,7 +27,13 @@ class add_member_controller extends Controller{
         $member = add_member_model::find($id);
         $member->delete();
 
+        $userEmail = Auth::user()->email;
+
+        SendMailDelete::dispatch($userEmail);
+
         return redirect()->route('viewGymMember');
+
+
     }
 
     public function getMember($id){
@@ -43,4 +52,5 @@ class add_member_controller extends Controller{
         $gymMember->save();
         return redirect()->route('viewGymMember');
     }
+
 }
