@@ -23,7 +23,6 @@ class SendMailDelete implements ShouldQueue
     public function __construct($to)
     {
         $this->to = $to;
-
     }
 
     /**
@@ -34,7 +33,7 @@ class SendMailDelete implements ShouldQueue
     public function handle()
     {
         Mail::send([],[], function ($message){
-            $message->to($this->to)->setBody("Item was deleted -> ");
+            $message->to($this->to)->setBody("Membership is canceled");
         });
     }
 }
